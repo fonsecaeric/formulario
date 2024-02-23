@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário da Ebac</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Formulário de Cadastro</h1>
+        <form id="formulario">
+            <label for="nome_completo">Nome Completo:</label><br>
+            <input type="text" id="nome_completo" name="nome_completo" 
+            
+            <label for="email">E-mail:</label><br>
+            <input type="email" id="email" name="email" 
+            
+            <label for="telefone">Telefone:</label><br>
+            <input type="tel" id="telefone" name="telefone" placeholder="Formato: 99999999999" 
+            <label for="cpf">CPF:</label><br>
+            <input type="text" id="cpf" name="cpf" placeholder="Formato: 000.000.000-00" 
+            
+            <label for="endereco_completo">Endereço Completo:</label><br>
+            <textarea id="endereco_completo" name="endereco_completo" required></textarea><br><br>
+            
+            <label for="cep">CEP:</label><br>
+            <input type="text" id="cep" name="cep"  placeholder="Formato: (00000-000)" required><br><br>
+            
+            <input type="submit" value="Enviar">
+        </form>
+        <div id="mensagem"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#formulario').submit(function(event) {
+                event.preventDefault(); 
+
+                var formData = $(this).serialize(); 
+                    type: 'POST',
+                    url: 'processar_formulario.php',
+                        $('#mensagem').html('<p>Formulário enviado com sucesso.</p>');
+                    },
+                    error: function(xhr, status, error) {
+                        $('#mensagem').html('<p>Ocorreu um erro ao enviar o formulário.</p>');
+                        console.error(xhr, status, error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
